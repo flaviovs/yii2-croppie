@@ -1,0 +1,23 @@
+{
+    "name": "flaviovs/yii2-croppie",
+    "description": "Yii2 + Croppie integration extension",
+    "type": "yii2-extension",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Flávio Veloso",
+            "email": "flaviovs@magnux.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "autoload": {
+	"psr-4": {
+	    "fv\\yii\\croppie\\": "src/"
+	}
+    },
+    "require": {
+        "php": ">=5.6.0",
+        "bower-asset/croppie": "^2.6",
+        "bower-asset/exif-js": "^2.3"
+    }
+}
