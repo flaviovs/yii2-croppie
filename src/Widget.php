@@ -102,7 +102,7 @@ class Widget extends \yii\widgets\InputWidget
                 . $this->onClientUpdate
                 . ';}';
         } else {
-            $callback = null;
+            $callback = 'null';
         }
 
         $this->view->registerJs(<<<EOJS
