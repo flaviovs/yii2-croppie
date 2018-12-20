@@ -29,6 +29,8 @@ class Widget extends \yii\widgets\InputWidget
 
     public $size = 'viewport';
 
+    public $url;
+
     public function init()
     {
         parent::init();
@@ -112,6 +114,14 @@ jQuery('#{$id}')
     .croppie($js_options);
 EOJS
         );
+
+        if ($this->url) {
+            $url = Json::encode($this->url);
+            $this->view->registerJs(
+                "jQuery('#{$id}').croppie('bind', {url: $url})"
+            );
+        }
+
 
         return Html::tag('div', '', [
             'id' => $id,
