@@ -15,6 +15,8 @@ class Widget extends \yii\widgets\InputWidget
 
     public $clientOptions = [];
 
+    public $onClientUpdate;
+
     public $uploadButtonOptions = [];
 
     public $rotateButtonOptions = [];
@@ -93,10 +95,20 @@ class Widget extends \yii\widgets\InputWidget
         $format = Json::encode($this->format);
         $size = Json::encode($this->size);
 
+        if ($this->onClientUpdate) {
+            $callback = 'function($widget, $input) {'
+                . $this->onClientUpdate
+                . ';}';
+        } else {
+            $callback = null;
+        }
+
         $this->view->registerJs(<<<EOJS
 jQuery('#{$id}')
     .on('update.croppie',
-        function(ev, data) { croppieWidget.updateData(ev, data, $format, $size); })
+        function(ev, data) {
+			croppieWidget.updateData(ev, data, $format, $size, $callback);
+        })
     .croppie($js_options);
 EOJS
         );

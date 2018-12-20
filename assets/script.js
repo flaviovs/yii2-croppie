@@ -1,7 +1,7 @@
 (function($) {
     'use strict';
 
-    function updateData(ev, data, format, size)
+    function updateData(ev, data, format, size, callback)
     {
 	    var $el = $(ev.target);
 
@@ -17,8 +17,12 @@
 		        circle: false,
 	        })
 	        .then(function(data) {
-		        $widget.find('.croppie-widget__data').val(data);
+                var $input = $widget.find('.croppie-widget__data');
+		        $input.val(data);
 		        $el.val('');
+                if (callback) {
+                    callback($widget, $input);
+                };
 	        });
     }
 
