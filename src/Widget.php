@@ -25,6 +25,8 @@ class Widget extends \yii\widgets\InputWidget
 
     public $layout = "{canvas}\n{upload}\n{rotate-cw}\n{rotate-ccw}";
 
+    public $size = 'viewport';
+
     public function init()
     {
         parent::init();
@@ -89,11 +91,12 @@ class Widget extends \yii\widgets\InputWidget
             : '';
 
         $format = Json::encode($this->format);
+        $size = Json::encode($this->size);
 
         $this->view->registerJs(<<<EOJS
 jQuery('#{$id}')
     .on('update.croppie',
-        function(ev, data) { croppieWidget.updateData(ev, data, $format); })
+        function(ev, data) { croppieWidget.updateData(ev, data, $format, $size); })
     .croppie($js_options);
 EOJS
         );

@@ -1,7 +1,7 @@
 (function($) {
     'use strict';
 
-    function updateData(ev, data, format)
+    function updateData(ev, data, format, size)
     {
 	    var $el = $(ev.target);
 
@@ -12,6 +12,7 @@
 	        .find('.croppie-widget__canvas')
 	        .croppie('result', {
 		        type: 'base64',
+                size: size,
 		        format: format,
 		        circle: false,
 	        })
