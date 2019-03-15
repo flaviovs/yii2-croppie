@@ -175,7 +175,7 @@ EOJS
                     'accept' => 'image/*',
                 ]
             ),
-            ['class' => 'btn btn-default btn-file']
+            ['class' => 'btn btn-primary btn-file']
         );
     }
 
