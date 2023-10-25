@@ -30,6 +30,8 @@ class Widget extends \yii\widgets\InputWidget
     public $size = 'viewport';
 
     public $url;
+    
+    public $zoom;
 
     public function init()
     {
@@ -116,9 +118,16 @@ EOJS
         );
 
         if ($this->url) {
-            $url = Json::encode($this->url);
+            $bindOptions = [
+                'url' => $this->url,
+            ];
+            
+            if ($this->zoom !== NULL) {
+                $bindOptions['zoom'] = $this->zoom;
+            }
+            
             $this->view->registerJs(
-                "jQuery('#{$id}').croppie('bind', {url: $url})"
+                "jQuery('#{$id}').croppie('bind', " . Json::encode($bindOptions) . ")"
             );
         }
 
